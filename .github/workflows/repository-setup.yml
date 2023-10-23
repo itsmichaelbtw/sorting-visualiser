@@ -1,0 +1,85 @@
+name: Repository Setup
+
+on:
+  workflow_dispatch:
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+run-name: Repository Setup
+
+concurrency:
+  group: ${{ github.event.repository.name }}
+  cancel-in-progress: true
+
+jobs:
+  repository-setup:
+    name: Repository Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract repository name
+        shell: bash
+        id: extract_repo_name
+        run: echo "REPO_NAME=$(echo ${GITHUB_REPOSITORY#*/})" >> "$GITHUB_OUTPUT"
+
+      - name: Delete Repository Labels
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labels = await github.rest.issues.listLabelsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            for (const label of labels.data) {
+              await github.rest.issues.deleteLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: label.name,
+              });
+            }
+
+      - name: Create Repository Labels
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labels = [
+              {
+                name: 'automated-issue',
+                color: '191a1a',
+                description: 'Issues created by automated processes',
+              },
+              {
+                name: 'branch-linked',
+                color: '668f71',
+                description: 'Branch was linked to an issue',
+              },
+              {
+                name: 'urgent',
+                color: 'f50000',
+              },
+              {
+                name: 'high',
+                color: 'ffcc00',
+              },
+              {
+                name: 'normal',
+                color: '6fddff',
+              },
+              {
+                name: 'low',
+                color: 'd8d8d8',
+              }
+            ];
+
+            for (const label of labels) {
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: label.name,
+                color: label.color,
+                description: label.description,
+              });
+            }
