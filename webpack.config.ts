@@ -109,6 +109,7 @@ export default function (env: any): Configuration {
       }),
       new HtmlWebpackPlugin({
         template: "index.html",
+        title: PackageJson.name,
         minify: {
           removeComments: isProduction,
           minifyURLs: isProduction,
