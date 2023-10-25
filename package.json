@@ -1,6 +1,6 @@
 {
-  "name": "react-base-repository",
-  "version": "1.0.0",
+  "name": "sorting-visualiser",
+  "version": "0.0.0",
   "description": "A reusable repository for creating React based projects",
   "main": "index.ts",
   "scripts": {
