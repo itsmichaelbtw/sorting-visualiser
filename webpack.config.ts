@@ -38,10 +38,10 @@ export default function (env: any): Configuration {
   const buildHash = createBuildHash();
 
   return {
-    context: __dirname,
     mode: environment,
     devtool: isDevelopment ? "inline-source-map" : false,
     entry: "./index.tsx",
+    target: "web",
     output: {
       path: outputFolder,
       filename: `js/[name].[fullhash:12].js`,
@@ -50,7 +50,8 @@ export default function (env: any): Configuration {
       crossOriginLoading: "anonymous"
     },
     resolve: {
-      extensions: [".ts", ".tsx", ".js", ".jsx"]
+      extensions: [".ts", ".tsx", ".js", ".jsx"],
+      modules: ["node_modules", __dirname]
     },
     optimization: {
       minimize: isProduction,
@@ -135,6 +136,10 @@ export default function (env: any): Configuration {
           exclude: /\.map$/
         })
     ].filter(Boolean),
+    watchOptions: {
+      ignored:
+        /.git|.github|.build|.gitignore|.prettierignore|.prettier|node_modules|public|webpack.config.ts/
+    },
     devServer: {
       hot: isDevelopment
     }
