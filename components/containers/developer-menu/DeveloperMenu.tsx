@@ -11,7 +11,7 @@ export function DeveloperMenu() {
       hidden: hide
     },
     svg: [
-      "w-5 h-5",
+      "w-5 h-5 text-black",
       {
         "rotate-180": hide
       }
@@ -19,7 +19,7 @@ export function DeveloperMenu() {
   });
 
   return (
-    <div className="absolute bottom-0 left-[10%] transition-all duration-250 overflow-hidden">
+    <div className="absolute bottom-0 left-[10%] transition-all duration-250 overflow-hidden font-sans">
       <div className="flex flex-row justify-between w-full">
         <div
           className={joinCls(
@@ -28,7 +28,7 @@ export function DeveloperMenu() {
           )}
           onClick={() => setHide((v) => !v)}
         >
-          <span className="font-medium leading-none pr-3">Developer Menu</span>
+          <span className="font-medium leading-none pr-3 text-black">Developer Menu</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

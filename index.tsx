@@ -5,7 +5,7 @@ import "./css/tailwind.css";
 import React from "react";
 import ReactDom from "react-dom/client";
 
-import { App } from "components/containers/App";
+import { App } from "components/App";
 import { DevelopmentEnvironment } from "components/containers/developer-menu/DevelopmentEnvironment";
 
 const DeveloperMenu = React.lazy(() =>
