@@ -1,6 +1,7 @@
 import type { WithChildren } from "./types";
 
 import "./css/tailwind.css";
+import "./css/root.css";
 
 import React from "react";
 import ReactDom from "react-dom/client";
