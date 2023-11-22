@@ -1,7 +1,7 @@
 {
   "name": "sorting-visualiser",
   "version": "0.0.0",
-  "description": "A reusable repository for creating React based projects",
+  "description": "A sorting visualiser",
   "main": "index.ts",
   "scripts": {
     "dev": "webpack serve --mode development --hot --port 3000 --node-env development",
@@ -44,9 +44,11 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "clsx": "^2.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-slider": "^2.0.6"
   },
   "author": "Michael Cizek",
   "license": "MIT"
