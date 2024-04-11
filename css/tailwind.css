@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .custom-grid-header-lg {
+    grid-template-areas: "Generator Selectors Timer";
+  }
+
+  .custom-grid-header-md {
+    grid-template-areas:
+      "Generator Timer"
+      "Selectors Selectors";
+  }
+
+  .custom-grid-header-sm {
+    grid-template-areas:
+      "Generator"
+      "Selectors"
+      "Timer";
+  }
+
+  .custom-grid-item[data-grid-item="generator"] {
+    grid-area: Generator;
+  }
+
+  .custom-grid-item[data-grid-item="selectors"] {
+    grid-area: Selectors;
+  }
+
+  .custom-grid-item[data-grid-item="timer"] {
+    grid-area: Timer;
+  }
+
+  [data-disabled="true"] {
+    @apply !opacity-75 pointer-events-none;
+  }
+}
