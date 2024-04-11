@@ -28,6 +28,16 @@ function createBuildHash(): string {
   return digest.slice(0, 12);
 }
 
+function getPageTitle(): string {
+  if ("title" in PackageJson) {
+    if (!!PackageJson.title) {
+      return PackageJson.title as string;
+    }
+  }
+
+  return PackageJson.name;
+}
+
 export default function (env: any): Configuration {
   const environment = process.env.NODE_ENV as Configuration["mode"];
   const isDevelopment = environment === "development";
@@ -109,7 +119,7 @@ export default function (env: any): Configuration {
       }),
       new HtmlWebpackPlugin({
         template: "index.html",
-        title: PackageJson.name,
+        title: getPageTitle(),
         minify: {
           removeComments: isProduction,
           minifyURLs: isProduction,
@@ -118,15 +128,16 @@ export default function (env: any): Configuration {
         },
         inject: "head"
       }),
-      new ForkTsCheckerWebpackPlugin({
-        typescript: {
-          diagnosticOptions: {
-            semantic: true,
-            syntactic: true
-          },
-          mode: "write-references"
-        }
-      }),
+      isDevelopment &&
+        new ForkTsCheckerWebpackPlugin({
+          typescript: {
+            diagnosticOptions: {
+              semantic: true,
+              syntactic: true
+            },
+            mode: "write-references"
+          }
+        }),
       new MiniCssExtractPlugin({
         filename: `css/[name].[fullhash:12].css`,
         chunkFilename: `css/[name].[fullhash:12].vendor.css`
