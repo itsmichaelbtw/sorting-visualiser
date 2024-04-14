@@ -9,8 +9,6 @@ export function sortReducer(state: SortContextInterface, action: SortAction): So
     switch (action.type) {
       case "SET_ALGORITHM":
         return { ...state, algorithm: action.payload.algorithm! };
-      case "SET_SPEED":
-        return { ...state, speed: action.payload.speed! };
       case "SET_VIEW_MODE":
         return { ...state, viewMode: action.payload.viewMode! };
 

@@ -8,7 +8,7 @@ import { Button } from "components/ui/Button";
 import { Dropdown } from "components/ui/Dropdown";
 
 import { useSortContext } from "hooks";
-import { SPEEDS, VIEW_MODES, ALGORITHMS } from "config/constants";
+import { VIEW_MODES, ALGORITHMS } from "config/constants";
 import { genRandomCount } from "utils/gen-random-count";
 
 export const VARIANTS: Variants = {
@@ -30,16 +30,8 @@ export const VARIANTS: Variants = {
 };
 
 export function Selectors() {
-  const {
-    viewMode,
-    algorithm,
-    speed,
-    isSorting,
-    changeViewMode,
-    changeAlgorithm,
-    adjustSpeed,
-    updateColumnCount
-  } = useSortContext();
+  const { viewMode, algorithm, isSorting, changeViewMode, changeAlgorithm, updateColumnCount } =
+    useSortContext();
 
   function onRandom() {
     updateColumnCount(genRandomCount());
@@ -74,10 +66,6 @@ export function Selectors() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <motion.div key="speed-dropdown" variants={VARIANTS}>
-        <Dropdown currentValue={speed} options={SPEEDS} onChange={adjustSpeed} />
-      </motion.div>
     </motion.div>
   );
 }

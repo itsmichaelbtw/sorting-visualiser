@@ -1,28 +1,26 @@
 import type { WithChildren } from "types";
 import type { InitialSortContext } from "./sort.interface";
 
-import { createContext, useLayoutEffect, useReducer, useRef } from "react";
+import { createContext, useEffect, useLayoutEffect, useReducer, useRef } from "react";
 import { sortReducer } from "./sort.reducer";
 
 import { fatalNoop } from "utils/noop";
 import {
   DEFAULT_ALGORITHM,
-  DEFAULT_ANIMATION_SPEED,
   DEFAULT_VIEW_MODE,
-  INITIAL_ARRAY_SIZE
+  INITIAL_ARRAY_SIZE,
+  TIMER_FRAMERATE
 } from "config/constants";
 
 const INITIAL_STATE: InitialSortContext = {
   algorithm: DEFAULT_ALGORITHM,
   viewMode: DEFAULT_VIEW_MODE,
-  speed: DEFAULT_ANIMATION_SPEED,
   columnCount: INITIAL_ARRAY_SIZE,
   isPaused: false,
   isSorting: false,
   sortInjector: null as any,
   changeViewMode: fatalNoop,
   changeAlgorithm: fatalNoop,
-  adjustSpeed: fatalNoop,
   updateColumnCount: fatalNoop,
   dispatchSort: fatalNoop,
   dispatchPause: fatalNoop,
@@ -81,15 +79,6 @@ export function SortProvider({ children }: WithChildren) {
     });
   }
 
-  function adjustSpeed(speed: InitialSortContext["speed"]) {
-    dispatch({
-      type: "SET_SPEED",
-      payload: {
-        speed: speed
-      }
-    });
-  }
-
   function updateColumnCount(columnCount: number) {
     dispatch({
       type: "SET_COLUMN_COUNT",
@@ -129,7 +118,6 @@ export function SortProvider({ children }: WithChildren) {
         ...state,
         changeViewMode,
         changeAlgorithm,
-        adjustSpeed,
         updateColumnCount,
         dispatchSort,
         dispatchPause,
