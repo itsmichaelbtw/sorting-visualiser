@@ -15,7 +15,9 @@ type SortingStatus = "idle" | "sorting" | "pause" | "done";
 
 interface SortInjector {
   status: SortingStatus[];
+  sortTimes: number[];
   updateSortStatus(index: number, status: SortingStatus): void;
+
   stopSort(index: number): boolean;
 }
 

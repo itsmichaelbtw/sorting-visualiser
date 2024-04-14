@@ -78,9 +78,10 @@ export function RunnerProvider({
     await instance.sort(canvasStore.getColumnHeights(index));
 
     dispatch({
-      type: "SET_IS_RUNNING",
+      type: "DISPATCH",
       payload: {
-        isRunning: false
+        isRunning: false,
+        lastSortingTime: sortInjector.sortTimes[index]
       }
     });
 

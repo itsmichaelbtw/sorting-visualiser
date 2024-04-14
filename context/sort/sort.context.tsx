@@ -11,7 +11,6 @@ import {
   DEFAULT_VIEW_MODE,
   INITIAL_ARRAY_SIZE
 } from "config/constants";
-import { genRandomCount } from "utils/gen-random-count";
 
 const INITIAL_STATE: InitialSortContext = {
   algorithm: DEFAULT_ALGORITHM,
@@ -39,6 +38,7 @@ export function SortProvider({ children }: WithChildren) {
 
   const sortInjector = useRef<InitialSortContext["sortInjector"]>({
     status: [],
+    sortTimes: [],
     stopSort(index) {
       return this.status[index] === "pause";
     },
