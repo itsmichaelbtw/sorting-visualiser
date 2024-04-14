@@ -1,18 +1,19 @@
 import React from "react";
 
-export function App() {
-  const [count, setCount] = React.useState(0);
+import { SortProvider } from "context/sort";
 
+import { Header } from "components/containers/header";
+import { ViewRender } from "./containers/algorithm-runner";
+
+export function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-5xl font-bold">Hello, world!</h1>
-      <p className="text-2xl mt-4">Count: {count}</p>
-      <button
-        className="px-4 py-2 mt-2 text-white bg-blue-500 rounded"
-        onClick={() => setCount(count + 1)}
-      >
-        Increment
-      </button>
+    <div className="lg:h-screen w-screen flex flex-col max-w-screen-2xl mx-auto">
+      <SortProvider>
+        <div className="relative lg:h-full w-full lg:flex lg:flex-col items-center justify-center px-4 pb-4">
+          <Header />
+          <ViewRender />
+        </div>
+      </SortProvider>
     </div>
   );
 }
