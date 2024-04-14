@@ -21,7 +21,7 @@ export function DeveloperMenu() {
   });
 
   return (
-    <div className="absolute bottom-0 left-[10%] transition-all duration-250 overflow-hidden font-sans">
+    <div className="absolute bottom-0 left-[10%] transition-all duration-250 overflow-hidden font-sans z-[1000]">
       <div className="flex flex-row justify-between w-full">
         <div
           className={joinCls(
