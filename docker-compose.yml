@@ -1,0 +1,12 @@
+name: sorting-visualiser
+
+services:
+  app:
+    hostname: docker-app
+    container_name: webpack-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3500:80
+    restart: unless-stopped
