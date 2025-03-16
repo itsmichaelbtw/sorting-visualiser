@@ -37,7 +37,7 @@ export function Timer({ isRunning, onPause, onStart }: Props) {
       <Button color={isRunning ? "yellow" : "green"} onClick={_onClick}>
         {isRunning ? "Pause" : "Sort"}
       </Button>
-      <Utility.Node>
+      <Utility.Node className="w-[125px]">
         <Clock startTimer={isRunning} clearOnStart={false} />
       </Utility.Node>
     </Utility>

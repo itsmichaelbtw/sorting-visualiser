@@ -89,7 +89,7 @@ export function CompareView({ isSorting, sortingInjector, runner, canvasStore, a
                             exit="exit"
                             className="absolute bottom-0 left-0 mb-2 ml-2 pointer-events-none flex flex-row gap-x-2"
                           >
-                            <div className="px-2 py-1 bg-black bg-opacity-50 rounded text-white shadow font-bold">
+                            <div className="px-2 py-1 bg-black bg-opacity-50 rounded text-white shadow font-bold w-[100px]">
                               <Clock
                                 startTimer={isRunning}
                                 onTimeUpdate={(time) => {
